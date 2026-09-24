@@ -2,7 +2,7 @@
 
 #include <functional>
 
-namespace integra
+namespace hwlib::execution
 {
 
 /// Deferred-execution abstraction: the handler runs later, on whatever context
@@ -22,4 +22,4 @@ public:
     virtual void SetHandler(std::function<void()> handler) = 0;
 };
 
-} // namespace integra
+} // namespace hwlib::execution

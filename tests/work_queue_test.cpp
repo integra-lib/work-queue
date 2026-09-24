@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <functional>
-#include <integra/work_queue.hpp>
+#include <hwlib/execution/work_queue.hpp>
 #include <utility>
 
 namespace
@@ -9,7 +9,7 @@ namespace
 
 // Minimal implementation, standing in for a platform one: Submit() runs the
 // handler immediately.
-class ImmediateWorkQueue : public integra::IWorkQueue
+class ImmediateWorkQueue : public hwlib::execution::IWorkQueue
 {
 public:
     void Submit() override
@@ -63,8 +63,8 @@ TEST(WorkQueueTest, SetHandlerReplacesThePreviousOne)
 TEST(WorkQueueTest, IsUsableThroughTheInterface)
 {
     ImmediateWorkQueue queue;
-    integra::IWorkQueue& iface = queue;
-    int calls                  = 0;
+    hwlib::execution::IWorkQueue& iface = queue;
+    int calls                           = 0;
     iface.SetHandler([&calls]() { ++calls; });
     iface.Submit();
     EXPECT_EQ(calls, 1);
